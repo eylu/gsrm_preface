@@ -1,0 +1,33 @@
+{
+  "name": "gsrm_preface",
+  "version": "1.0.0",
+  "private": true,
+  "repository": "https://github.com/eylu/gsrm_preface.git",
+  "author": "Lucien <1069888988@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.7",
+    "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
