@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import './assets/stylesheets/index.css';
-
-
-class Greeter extends Component {
-    constructor(props){
-        super(props);
-    }
-    render() {
-        return (
-            <div className="hello">
-            Hello, {this.props.title}
-            </div>
-        );
-    }
-}
+/**
+ * import Configs
+ */
+import AppRouter from "./config/router";
+import store from "./config/store";
 
 ReactDOM.render(
-    <Greeter title="ReactJS" />,
-    document.getElementById('root')
+  <Router>
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  </Router>,
+  document.getElementById('root')
 );
