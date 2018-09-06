@@ -1,0 +1,9 @@
+.layout-top{
+  height: 60px;
+  color: #fff;
+  background: map-get($colors, "info-darker");
+
+  a{
+    color: #fff;
+  }
+}

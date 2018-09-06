@@ -8,7 +8,7 @@ export default class Layout extends Component {
   render() {
     return (
       <div>
-        <div>
+        <div className="layout-top">
           <Link to="/">
             Home
           </Link>

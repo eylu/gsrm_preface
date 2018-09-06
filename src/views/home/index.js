@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { firebaseConnect } from "react-redux-firebase";
 
+import _ from "lodash";
+import { Button } from 'reactstrap';
+
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -14,13 +18,26 @@ class Home extends Component {
   }
 
   render() {
+    let quotes = this.props.quotes || {};
     return (
       <div>
         Home Page.
         <div>
-          <Link to="dashboard">
-            Dash
-          </Link>
+          <Button color="danger">Danger!</Button>
+          <div>
+           <span className="hello">
+            这是测试样式
+           </span>
+          </div>
+          <ul>
+            {_.map(quotes, function(quote, k){
+              return (
+                <div key={k} data-key={k}>
+                  {quote.a} - {quote.b}
+                </div>
+              );
+            })}
+          </ul>
         </div>
       </div>
     );

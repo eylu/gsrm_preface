@@ -9,6 +9,14 @@ import { Provider } from "react-redux";
 import AppRouter from "./config/router";
 import store from "./config/store";
 
+
+
+/**
+ * import Styles
+ */
+import "bootstrap/dist/css/bootstrap.css";
+import "./assets/stylesheets/index.scss";
+
 ReactDOM.render(
   <Router>
     <Provider store={store}>
