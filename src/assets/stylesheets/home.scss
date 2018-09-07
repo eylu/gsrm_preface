@@ -1,3 +1,87 @@
 .home{
   height: 200px;
 }
+
+.quote-page{}
+.quote-header{}
+.quote-body{
+  padding-top: 24px;
+}
+.quote-sizes{
+  width: 128px;
+  background: map-get($colors, "info-lighter");
+  border: 1px solid map-get($colors, "info-light");
+  border-radius: $radius;
+
+  .size{
+    padding: 10px 0 10px 16px;
+    border-top: 1px solid map-get($colors, "info-light");
+
+
+    &:first-child{
+      border-top: none;
+    };
+
+    .label{
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .max-price{
+      display: block;
+      font-size: 10px;
+      color: map-get($colors, "info-dark");
+    }
+  }
+}
+.quote-list{
+  &-title{
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  &-banner{
+    background: map-get($colors, "info-lighter");
+    border-radius: $radius;
+    padding: 8px 8px 8px 24px;
+    color: #fff;
+
+    &.success{
+      background: map-get($colors, "success");
+
+      .btn{
+        border: none;
+        background: map-get($colors, "success-darker");
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2) ;
+      }
+    }
+    &.purple{
+      background: map-get($colors, "purple");
+
+      .btn{
+        border: none;
+        background: map-get($colors, "purple-dark");
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2) ;
+      }
+    }
+
+    .tip{
+      font-size: 10px;
+      line-height: 1.4;
+      margin-bottom: 2px;
+    }
+    .price{
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1;
+    }
+    .btn{
+      padding: 0.5em 1.2em;
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1;
+    }
+  }
+  &-table{}
+}

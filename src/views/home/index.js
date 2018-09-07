@@ -8,6 +8,10 @@ import { firebaseConnect } from "react-redux-firebase";
 import _ from "lodash";
 import { Button } from "reactstrap";
 
+import { quoteType } from "../../config/enum";
+import QuoteShow from "../quotes/show";
+
+const quoteTypeArray = _.map(quoteType, (key, value) => { return value });
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -17,29 +21,33 @@ class Home extends Component {
     // console.log(this.props)
   }
 
-  addData(data) {
-    console.log(data);
+  addData() {
+    let size_id = _.random(1, 9);
+    let boxes = _.random(100, 150);
+    let price = _.round(_.random(10.05, 25.99), 2);
+    let t = _.sample(quoteTypeArray);
+    const data = {
+      price: price,
+      boxes: boxes,
+      volume: boxes * 30,
+      size_id: size_id,
+      type: t
+    };
+    console.log(data)
     this.props.firebase.push("quotes", data)
   }
 
   render() {
     let quotes = this.props.quotes || {};
-    const data = {
-      price: 24.54,
-      boxes: 120,
-      volume: 3600,
-      size_id: 1,
-      type: "sell"
-    };
-    console.log('firebase',this.props.firebase)
+
     return (
       <div>
-        Home Page.
-        <div>
+        <div className="d-none">
+          Home Page.
           <Button
             color="danger"
             onClick={() => {
-              this.addData(data);
+              this.addData();
             }}
           >
             Danger!
@@ -47,16 +55,8 @@ class Home extends Component {
           <div>
             <span className="hello">这是测试样式</span>
           </div>
-          <ul>
-            {_.map(quotes, function(quote, k) {
-              return (
-                <div key={k} data-key={k}>
-                  {quote.a} - {quote.b}
-                </div>
-              );
-            })}
-          </ul>
         </div>
+        <QuoteShow />
       </div>
     );
   }
