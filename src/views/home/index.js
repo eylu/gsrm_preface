@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { getFirebase } from "react-redux-firebase";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firebaseConnect } from "react-redux-firebase";
 
 import _ from "lodash";
-import { Button } from 'reactstrap';
-
+import { Button } from "reactstrap";
 
 class Home extends Component {
   constructor(props) {
@@ -17,20 +17,38 @@ class Home extends Component {
     // console.log(this.props)
   }
 
+  addData(data) {
+    console.log(data);
+    this.props.firebase.push("quotes", data)
+  }
+
   render() {
     let quotes = this.props.quotes || {};
+    const data = {
+      price: 24.54,
+      boxes: 120,
+      volume: 3600,
+      size_id: 1,
+      type: "sell"
+    };
+    console.log('firebase',this.props.firebase)
     return (
       <div>
         Home Page.
         <div>
-          <Button color="danger">Danger!</Button>
+          <Button
+            color="danger"
+            onClick={() => {
+              this.addData(data);
+            }}
+          >
+            Danger!
+          </Button>
           <div>
-           <span className="hello">
-            这是测试样式
-           </span>
+            <span className="hello">这是测试样式</span>
           </div>
           <ul>
-            {_.map(quotes, function(quote, k){
+            {_.map(quotes, function(quote, k) {
               return (
                 <div key={k} data-key={k}>
                   {quote.a} - {quote.b}
@@ -44,18 +62,16 @@ class Home extends Component {
   }
 }
 
-function mapStateToProps(state){
-  console.log(state)
+function mapStateToProps(state) {
+  console.log(state);
   return {
-    quotes: state.firebase.data.quotes,
-  }
+    quotes: state.firebase.data.quotes
+  };
 }
 
 export default compose(
   firebaseConnect(props => {
-    return [
-      "quotes"
-    ];
+    return ["quotes"];
   }),
   connect(mapStateToProps)
 )(Home);
