@@ -1,0 +1,41 @@
+.gs-form{
+  .fields{
+    .field{
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.input{
+  background: #fff;
+  border: 1px solid map-get($colors, "info");
+  padding: 10px 16px;
+  border-radius: $radius;
+  outline: none;
+  width: 100%;
+
+  &:focus{
+    outline: none;
+    border-color: map-get($colors, "primary");;
+  };
+
+  &[disabled]{
+    background: #f1f1f1;
+    cursor: not-allowed;
+  }
+
+  &-inline{
+    width: inherit;
+  }
+}
+
+.input-title{
+  font-size: 14px;
+  font-weight: 600;
+
+  & &-tip{
+    font-size: 12px;
+    font-size: normal;
+    color: map-get($colors, "info-dark");
+  }
+}

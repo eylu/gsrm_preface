@@ -4,6 +4,7 @@ $colors: (
   "primary": #8DB9EB,
   "primary-light": #A2E0DF,
   "primary-lighter": #DEEFFF,
+  "primary-lightest": #EFF2F7,
   "primary-grey": #9DAEC2,
 
   "success-darker": #2D906C,
@@ -40,3 +41,15 @@ $colors: (
   "cyan-light": #48719F,
 
 );
+
+/**
+ * color
+ */
+@each $key, $c in $colors {
+  .color-#{$key}{
+    color: $c;
+  }
+}
+/**
+ * color end
+ */
