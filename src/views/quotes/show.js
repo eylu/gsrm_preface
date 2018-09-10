@@ -11,6 +11,7 @@ import { sizes } from "../../config/enum";
 import Image from "../components/_image";
 import QuoteTable from "../components/_quote_table";
 import ModalOrder from "./_modal_order";
+import ModalOrderConfirm from "./_modal_order_confirm";
 
 class QuoteShow extends Component {
   constructor(props) {
@@ -18,8 +19,10 @@ class QuoteShow extends Component {
 
     this.state = {
       modalOrder: {
-        isOpen: false,
+        isOrderOpen: false,
+        isConfirmOpen: false,
         type: '',
+
       },
     };
   }
@@ -28,10 +31,18 @@ class QuoteShow extends Component {
     // console.log(this.props)
   }
 
-  toggleModal(type) {
+  toggleOrderModal(type) {
     let { modalOrder } = this.state;
-    modalOrder.isOpen = !modalOrder.isOpen;
-    modalOrder.type = type || '';
+    modalOrder.isOrderOpen = !modalOrder.isOrderOpen;
+    if(type) {
+      modalOrder.type = type;
+    }
+    this.setState(modalOrder)
+  }
+
+  toggleConfirmModal() {
+    let { modalOrder } = this.state;
+    modalOrder.isConfirmOpen = !modalOrder.isConfirmOpen;
     this.setState(modalOrder)
   }
 
@@ -85,7 +96,7 @@ class QuoteShow extends Component {
                           <div className="tip">HIGHEST OFFER PRICE</div>
                           <div className="price">$35.70</div>
                         </div>
-                        <Button onClick={() => this.toggleModal('buyer')}>
+                        <Button onClick={() => this.toggleOrderModal('buyer')}>
                           SELL
                         </Button>
                       </div>
@@ -107,7 +118,7 @@ class QuoteShow extends Component {
                           <div className="tip">LOWEST ASKING PRICE</div>
                           <div className="price">$35.70</div>
                         </div>
-                        <Button onClick={() => this.toggleModal('seller')}>
+                        <Button onClick={() => this.toggleOrderModal('seller')}>
                           BUY
                         </Button>
                       </div>
@@ -136,7 +147,8 @@ class QuoteShow extends Component {
             </div>
           </div>
         </div>
-        <ModalOrder isOpen={this.state.modalOrder.isOpen} quoteType={this.state.modalOrder.type} toggleModal={() => this.toggleModal()} />
+        <ModalOrder isOpen={this.state.modalOrder.isOrderOpen} quoteType={this.state.modalOrder.type} toggleModal={() => this.toggleOrderModal()} toggleConfirmModal={() => this.toggleConfirmModal()} />
+        <ModalOrderConfirm isOpen={this.state.modalOrder.isConfirmOpen} quoteType={this.state.modalOrder.type} toggleModal={() => this.toggleConfirmModal()} />
       </div>
     );
   }
