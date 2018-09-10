@@ -13,7 +13,7 @@ export default class QuoteTable extends Component {
       return(
         <tbody>
           <tr>
-            <td colspan="4">
+            <td colSpan="4">
               <div className="gs-empty">No data.</div>
             </td>
           </tr>
@@ -54,11 +54,8 @@ export default class QuoteTable extends Component {
   }
 
   render() {
-    console.log('--->', this.props.data)
-
     let priceTip = priceMap[this.props.type];
     let classWrapper = classnames('quote-list-table', this.props.className);
-
 
     return (
       <div className={classWrapper}>

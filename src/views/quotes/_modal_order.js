@@ -7,6 +7,7 @@ import _ from "lodash";
 import { Button, Badge, Table, Modal, ModalHeader, ModalBody, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 
+import noticeShow from "../../utils/notice";
 import { quoteType } from "../../config/enum";
 import QuoteTable from "../components/_quote_table";
 
@@ -17,7 +18,9 @@ class ModalOrder extends Component {
 
     this.state = {
       activeTab: 'tab1',
-      fromData: {},
+      fromData: {
+        quantity: '',
+      },
     };
   }
 
@@ -39,13 +42,13 @@ class ModalOrder extends Component {
 
 
   boxChangHandler(val) {
-    console.log(val)
+
     let quantity =  parseInt(val);
     let quoteData = this.getQuoteData();
     let boxesSum = _.sumBy(quoteData, 'boxes');
     if(quantity > boxesSum){
       quantity = boxesSum;
-      alert('Too much !!!');
+      noticeShow('Two much !', 'notice');
     }
 
     let orderData = takeArrayBySum(quoteData, 'boxes', quantity);
@@ -142,7 +145,7 @@ class ModalOrder extends Component {
                             {item.volumn} <span className="fs-12">lb</span>
                           </div>
                           <div className="col col-4 text-right">
-                            @ $ {item.price} <span className="fs-12">lb</span>
+                            @ $ {item.price.toFixed(2)} <span className="fs-12">lb</span>
                           </div>
                           <div className="col col-3 text-right">
                             $ {(item.price * item.volumn).toFixed(2)}
@@ -161,7 +164,7 @@ class ModalOrder extends Component {
                         <div className="fs-12 fw-400 color-info-dark">TOTAL VOL.</div>
                       </div>
                       <div className="col col-4 text-right">
-                        $ 10.00 lb
+                        $ {(this.state.fromData.total_money/this.state.fromData.total_volumn).toFixed(2)} lb
                         <div className="fs-12 fw-400 color-info-dark">AVG PRICE</div>
                       </div>
                       <div className="col col-3 fw-600 text-right">

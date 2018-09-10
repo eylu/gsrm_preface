@@ -189,3 +189,23 @@ hr {
   text-align: center;
   padding: 24px 0;
 }
+
+.gs-alert{
+  position: fixed;
+  z-index: 9999;
+  top: 56px;
+  left: 24px;
+  right: 24px;
+  text-align: center;
+
+  @media(max-width: 767px){
+    left: 16px;
+    right: 16px;
+  }
+  .alert{
+    min-width: 240px;
+    margin-bottom: 0;
+    text-align: center;
+    display: inline-block;
+  }
+}

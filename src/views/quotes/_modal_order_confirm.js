@@ -4,6 +4,7 @@ import _ from "lodash";
 import { Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import classnames from 'classnames';
 
+import noticeShow from "../../utils/notice";
 import QuoteTable from "../components/_quote_table";
 
 
@@ -16,6 +17,15 @@ export default class ModalOrderConfirm extends Component {
 
   componentDidMount() {
     // console.log(this.props)
+  }
+
+  orderSubmit() {
+    console.log(this.props.orderFormData)
+    this.props.toggleModal();
+    this.props.toggleOrderModal();
+    setTimeout(function() {
+      noticeShow('Data has pushed.');
+    }, 0.6 * 1000);
   }
 
 
@@ -46,7 +56,7 @@ export default class ModalOrderConfirm extends Component {
               <QuoteTable type={this.props.quoteType} data={this.props.orderFormData.orderItems} />
             </div>
             <div className="page-confirm-buttons">
-              <Button color="primary" size="lg" block>
+              <Button color="primary" size="lg" block onClick={() => this.orderSubmit()}>
                 CONFIRM
               </Button>
             </div>

@@ -8,6 +8,7 @@ import _ from "lodash";
 import { Button, Badge, Table, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import classnames from 'classnames';
 
+import noticeShow from "../../utils/notice";
 import { quoteType, sizes } from "../../config/enum";
 import Image from "../components/_image";
 import QuoteTable from "../components/_quote_table";
@@ -137,7 +138,7 @@ class QuoteShow extends Component {
                       <div className="d-flex align-items-center">
                         <div className="flex1">
                           <div className="tip">HIGHEST OFFER PRICE</div>
-                          <div className="price">$35.70</div>
+                          <div className="price">${this.state.quoteSize.selected.max_price.toFixed(2)}</div>
                         </div>
                         <Button onClick={() => this.toggleOrderModal('buy')}>
                           SELL
@@ -159,7 +160,7 @@ class QuoteShow extends Component {
                       <div className="d-flex align-items-center">
                         <div className="flex1">
                           <div className="tip">LOWEST ASKING PRICE</div>
-                          <div className="price">$35.70</div>
+                          <div className="price">${this.state.quoteSize.selected.min_price.toFixed(2)}</div>
                         </div>
                         <Button onClick={() => this.toggleOrderModal('sell')}>
                           BUY
@@ -198,11 +199,11 @@ class QuoteShow extends Component {
                     toggleModal={() => this.toggleOrderModal()}
                     toggleConfirmModal={() => this.toggleConfirmModal()}
                     setOrderFormData={(formData) => this.setOrderFormData(formData)}
-
                     />
         <ModalOrderConfirm
                     isOpen={this.state.modalOrder.isConfirmOpen}
                     quoteType={this.state.modalOrder.type}
+                    toggleOrderModal={() => this.toggleOrderModal()}
                     toggleModal={() => this.toggleConfirmModal()}
                     orderFormData={this.state.orderFormData}
                     />
