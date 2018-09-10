@@ -43,7 +43,7 @@ export default class ModalOrderConfirm extends Component {
               <div className="gs-tag">3-5 DELIVERY</div>
             </div>
             <div className="text-left">
-              <QuoteTable type={this.props.quoteType} />
+              <QuoteTable type={this.props.quoteType} data={this.props.orderFormData.orderItems} />
             </div>
             <div className="page-confirm-buttons">
               <Button color="primary" size="lg" block>
@@ -58,7 +58,7 @@ export default class ModalOrderConfirm extends Component {
 }
 
 export const titleMap = {
-  'seller': "PURCHASE CONFIRMATION",
-  'buyer': "SELL CONFIRMATION",
+  'sell': "PURCHASE CONFIRMATION",
+  'buy': "SELL CONFIRMATION",
 };
 

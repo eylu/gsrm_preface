@@ -24,6 +24,11 @@
   margin-right: 24px;
 }
 
+.modal-table{
+  max-height: calc(100vh - 280px);
+  overflow-y: auto;
+}
+
 .btn.btn-primary {
   border: none;
   background: map-get($colors, "purple-dark");

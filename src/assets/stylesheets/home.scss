@@ -15,14 +15,19 @@
   border: 1px solid map-get($colors, "info-light");
   border-radius: $radius;
 
+  & &-title{
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    padding: 18px 0;
+  }
+
   .size{
-    padding: 10px 0 10px 16px;
     border-top: 1px solid map-get($colors, "info-light");
+    cursor: pointer;
+    position: relative;
+    height: 61px;
 
-
-    &:first-child{
-      border-top: none;
-    };
 
     .label{
       font-size: 14px;
@@ -34,6 +39,24 @@
       font-size: 10px;
       color: map-get($colors, "info-dark");
     }
+
+    .size-bg{
+      padding: 10px 0 10px 16px;
+    }
+    &.active{
+      .size-bg{
+        padding: 10px 0 10px 21px;
+        position: absolute;
+        top: 0;
+        left: -5px;
+        right: -5px;
+        color: #fff;
+        background: map-get($colors, "info-darker");
+        border-radius: $radius;
+      }
+    }
+
+
   }
 }
 .quote-list{

@@ -7,6 +7,7 @@ import _ from "lodash";
 import { Button, Badge, Table, Modal, ModalHeader, ModalBody, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 
+import { quoteType } from "../../config/enum";
 import QuoteTable from "../components/_quote_table";
 
 
@@ -15,12 +16,17 @@ class ModalOrder extends Component {
     super(props);
 
     this.state = {
-      activeTab: 'tab1'
+      activeTab: 'tab1',
+      fromData: {},
     };
   }
 
   componentDidMount() {
     // console.log(this.props)
+  }
+
+  getQuoteData(){
+    return this.props.quoteType == quoteType.sell ? this.props.quotesSeller : this.props.quotesBuyer;
   }
 
   toggle(tab) {
@@ -31,8 +37,32 @@ class ModalOrder extends Component {
     }
   }
 
+
+  boxChangHandler(val) {
+    console.log(val)
+    let quantity =  parseInt(val);
+    let quoteData = this.getQuoteData();
+    let boxesSum = _.sumBy(quoteData, 'boxes');
+    if(quantity > boxesSum){
+      quantity = boxesSum;
+      alert('Too much !!!');
+    }
+
+    let orderData = takeArrayBySum(quoteData, 'boxes', quantity);
+    let { fromData } = this.state;
+    fromData.orderItems = orderData;
+    fromData.quantity = quantity;
+    fromData.total_boxes = _.sumBy(orderData, 'boxes');
+    fromData.total_volumn = _.sumBy(orderData, 'volumn');
+    fromData.total_money = _.sumBy(orderData, function(it){ return it.volumn * it.price });
+
+    this.setState({fromData});
+
+  }
+
   orderSubmit() {
-    this.props.toggleModal();
+    this.props.setOrderFormData(this.state.fromData);
+    // this.props.toggleModal();
     this.props.toggleConfirmModal();
   }
 
@@ -40,6 +70,7 @@ class ModalOrder extends Component {
   render() {
     let pushTip = pushMap[this.props.quoteType];
     let listTitle = listTitleMap[this.props.quoteType];
+    let quoteData = this.getQuoteData();
 
     return(
       <Modal isOpen={this.props.isOpen}
@@ -75,7 +106,9 @@ class ModalOrder extends Component {
                   <div className="fs-20 fw-600 mb-3">
                     {listTitle}
                   </div>
-                  <QuoteTable type={this.props.quoteType} />
+                  <div className="modal-table">
+                    <QuoteTable type={this.props.quoteType} data={quoteData} />
+                  </div>
                 </div>
                 <div className="flex1 quote-modal-item quote-modal-form gs-form">
                   <div className="fields">
@@ -84,7 +117,7 @@ class ModalOrder extends Component {
                         <div className="flex1">Size</div>
                         <div className="input-title-tip">30 lb/box</div>
                       </label>
-                      <input className="input" value="1 - 1.25 lb" readOnly />
+                      <input className="input" value={this.props.quoteSize.label} readOnly />
                     </div>
                   </div>
                   <div className="fields">
@@ -93,38 +126,38 @@ class ModalOrder extends Component {
                         Boxes
                       </label>
                       <div>
-                        <input className="input" placeholder="0" />
+                        <input className="input" placeholder="0" value={this.state.fromData.quantity} onChange={(e) => this.boxChangHandler(e.target.value)} />
                       </div>
                     </div>
                   </div>
                   <div className="pt-3 pb-5">
-                    {[10, 12, 41].map((item, i) => {
+                    {(this.state.fromData.orderItems||[]).map((item, i) => {
 
                       return (
-                        <div className="row mb-2 fs-16 fw-500" key={i}>
+                        <div className="row no-gutters text-nowrap mb-2 fs-16 fw-500" key={i}>
                           <div className="col col-3">
-                            {item} <span className="fs-18">Boxes</span>
+                            {item.boxes} <span className="fs-18">Boxes</span>
                           </div>
                           <div className="col col-2 text-right">
-                            {item * 30} <span className="fs-12">lb</span>
+                            {item.volumn} <span className="fs-12">lb</span>
                           </div>
                           <div className="col col-4 text-right">
-                            @ $ 10.00 <span className="fs-12">lb</span>
+                            @ $ {item.price} <span className="fs-12">lb</span>
                           </div>
                           <div className="col col-3 text-right">
-                            $ {(item * 30 *10).toFixed(2)}
+                            $ {(item.price * item.volumn).toFixed(2)}
                           </div>
                         </div>
                       );
                     })}
                     <hr className="strong" />
-                    <div className="row fs-18 fw-500">
+                    <div className="row no-gutters text-nowrap fs-18 fw-500">
                       <div className="col col-3">
-                        150 Boxes
+                        {this.state.fromData.total_boxes || 0} Boxes
                         <div className="fs-12 fw-400 color-info-dark">TOTAL BOXES</div>
                       </div>
                       <div className="col col-2 text-right">
-                        1500 lb
+                        {this.state.fromData.total_volumn || 0} lb
                         <div className="fs-12 fw-400 color-info-dark">TOTAL VOL.</div>
                       </div>
                       <div className="col col-4 text-right">
@@ -132,7 +165,7 @@ class ModalOrder extends Component {
                         <div className="fs-12 fw-400 color-info-dark">AVG PRICE</div>
                       </div>
                       <div className="col col-3 fw-600 text-right">
-                        $ 15,000.00
+                        $ {(this.state.fromData.total_money||0).toFixed(2)}
                         <div className="fs-12 fw-400 color-info-dark">TOTAL PRICE</div>
                       </div>
                     </div>
@@ -165,10 +198,28 @@ export default compose(
 )(ModalOrder);
 
 export const listTitleMap = {
-  'seller': "SELLERS",
-  'buyer': "BUYERS",
+  'sell': "SELLERS",
+  'buy': "BUYERS",
 };
 export const pushMap = {
-  'seller': "OFFER OWN PRICE",
-  'buyer': "ASKING PRICE",
+  'sell': "OFFER OWN PRICE",
+  'buy': "ASKING PRICE",
 };
+
+function takeArrayBySum(list , key , sum = 0) {
+  let result = [];
+  (list||[]).forEach(function(item) {
+    if(sum >= item[key]) {
+      result.push(item);
+    }
+    if(sum < item[key] && sum > 0){
+      let o = Object.assign({}, item)
+      o[key] = sum;
+      o.volumn = sum * 30;
+      result.push(o);
+    }
+    sum -= item[key];
+  });
+
+  return result;
+}

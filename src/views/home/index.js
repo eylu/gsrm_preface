@@ -29,7 +29,7 @@ class Home extends Component {
     const data = {
       price: price,
       boxes: boxes,
-      volume: boxes * 30,
+      volumn: boxes * 30,
       size_id: size_id,
       type: t
     };
@@ -63,7 +63,6 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     quotes: state.firebase.data.quotes
   };
