@@ -27,7 +27,7 @@ function addNotice(msg, id, kind) {
     setTimeout(function() {
       removeNotice(dom);
     }, 2 * 1000);
-  }, 5 * 1000);
+  }, 4 * 1000);
 }
 
 function removeNotice(dom) {

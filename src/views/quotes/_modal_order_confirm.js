@@ -23,7 +23,7 @@ export default class ModalOrderConfirm extends Component {
     console.log(this.props.orderFormData)
     this.props.toggleModal();
     this.props.toggleOrderModal();
-    setTimeout(function() {
+    setTimeout(() => {
       noticeShow('Data has pushed.');
     }, 0.6 * 1000);
   }
