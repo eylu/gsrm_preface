@@ -112,6 +112,7 @@ hr {
   &-sub-title{
     font-size: 22px;
     margin-bottom: 0;
+    font-weight: 600;
   }
 }
 
@@ -126,7 +127,7 @@ hr {
     cursor: pointer;
     padding: 20px 0;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
     margin-right: 32px;
 
 
@@ -155,6 +156,7 @@ hr {
   background: map-get($colors, "info-light");
   padding: 5px 8px;
   font-size: 10px;
+  font-weight: 600;
   color: map-get($colors, "info-darker");
   border-radius: $radius-small;
   line-height: 1;
@@ -179,7 +181,7 @@ hr {
     &-small{
       td, th{
         color: map-get($colors, "info-dark");
-        font-size: 12px;
+        font-size: 10px;
       }
     }
   }

@@ -96,7 +96,7 @@ class QuoteShow extends Component {
             <h1 className="gs-page-title">
               American Lobster
             </h1>
-            <Image className="ml-2" />
+            <Image className="ml-3" />
           </div>
           <div>
             <div className="gs-tag mr-1">UNITED STATES</div>

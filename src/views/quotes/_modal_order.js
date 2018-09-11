@@ -16,17 +16,24 @@ class ModalOrder extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      activeTab: 'tab1',
-      fromData: {
-        quantity: '',
-      },
-    };
+    this.state = Object.assign({}, defaultState);
   }
 
   componentDidMount() {
-    // console.log(this.props)
+    this.initFormData();
   }
+
+  componentWillReceiveProps(nextProps){
+    if(!this.props.isOpen && nextProps.isOpen){
+      this.initFormData();
+    }
+  }
+
+  initFormData() {
+    let newState = Object.assign({}, defaultState);
+    this.setState({...newState});
+  }
+
 
   getQuoteData(){
     return this.props.quoteType == quoteType.sell ? this.props.quotesSeller : this.props.quotesBuyer;
@@ -40,7 +47,6 @@ class ModalOrder extends Component {
     }
   }
 
-
   boxChangHandler(val) {
 
     let quantity =  parseInt(val);
@@ -52,7 +58,7 @@ class ModalOrder extends Component {
     }
 
     let orderData = takeArrayBySum(quoteData, 'boxes', quantity);
-    let { fromData } = this.state;
+    let fromData = Object.assign({}, this.state.fromData);
     fromData.orderItems = orderData;
     fromData.quantity = quantity;
     fromData.total_boxes = _.sumBy(orderData, 'boxes');
@@ -65,7 +71,7 @@ class ModalOrder extends Component {
 
   orderSubmit() {
     this.props.setOrderFormData(this.state.fromData);
-    // this.props.toggleModal();
+    this.props.toggleModal();
     this.props.toggleConfirmModal();
   }
 
@@ -110,7 +116,7 @@ class ModalOrder extends Component {
                     {listTitle}
                   </div>
                   <div className="modal-table">
-                    <QuoteTable type={this.props.quoteType} data={quoteData} />
+                    <QuoteTable type={this.props.quoteType} data={quoteData} forsingle={true} />
                   </div>
                 </div>
                 <div className="flex1 quote-modal-item quote-modal-form gs-form">
@@ -207,6 +213,14 @@ export const listTitleMap = {
 export const pushMap = {
   'sell': "OFFER OWN PRICE",
   'buy': "ASKING PRICE",
+};
+
+
+const defaultState = {
+  activeTab: 'tab1',
+  fromData: {
+    quantity: '',
+  },
 };
 
 function takeArrayBySum(list , key , sum = 0) {

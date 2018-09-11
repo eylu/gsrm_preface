@@ -30,3 +30,5 @@ srm.iml
 .envrc
 .ruby-version
 dump.rdb
+
+dist/*

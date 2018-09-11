@@ -1,4 +1,12 @@
 .modal-header{
+  .close{
+    font-size: 44px;
+    height: 72px;
+    width: 72px;
+    padding: 0;
+    text-align: center;
+    font-weight: 300;
+  }
   &.p0{
     padding: 0 0 0 32px;
 
@@ -22,11 +30,32 @@
   max-width: 100%;
   margin-left: 24px;
   margin-right: 24px;
+
+  @media(min-width: 1200px){
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .modal-table{
   max-height: calc(100vh - 280px);
   overflow-y: auto;
+}
+
+
+.btn {
+  &:active,
+  &:focus,
+  &:active:focus{
+    outline: none;
+    box-shadow: none !important;
+  };
+
+  &.btn-lg{
+    line-height: 40px;
+    font-weight: 600;
+  }
 }
 
 .btn.btn-primary {
@@ -48,5 +77,9 @@
     background: map-get($colors, "purple");
   };
 
+}
 
+.btn-mini{
+  padding: 2px 8px;
+  font-size: 10px;
 }
