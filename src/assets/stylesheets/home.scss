@@ -11,7 +11,7 @@
 }
 .quote-sizes{
   width: 128px;
-  background: map-get($colors, "info-lighter");
+  background: map-get($colors, "primary-bg");
   border: 1px solid map-get($colors, "info-light");
   border-radius: $radius;
 
@@ -19,14 +19,16 @@
     font-size: 16px;
     font-weight: 700;
     text-align: center;
-    padding: 18px 0;
+    padding: 25px 0;
+    border-bottom: 1px solid map-get($colors, "info-light");
+
   }
 
   .size{
-    border-top: 1px solid map-get($colors, "info-light");
+    border-bottom: 1px solid map-get($colors, "info-light");
     cursor: pointer;
     position: relative;
-    height: 60px;
+    height: 68px;
 
 
     .label{
@@ -41,12 +43,22 @@
     }
 
     .size-bg{
-      padding: 10px 0 10px 16px;
+      padding: 13px 0 0 16px;
     }
     &.active{
+
+
+      .label{
+        font-weight: 700;
+      }
+
+      .max-price{
+        font-weight: 600;
+        color: map-get($colors, "info");
+      }
       .size-bg{
-        padding: 10px 0 0 21px;
-        height: 59px;
+        padding: 13px 0 0 21px;
+        height: 68px;
         position: absolute;
         top: 0;
         left: -5px;
@@ -54,6 +66,7 @@
         color: #fff;
         background: map-get($colors, "info-darker");
         border-radius: $radius;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
       }
     }
 
@@ -78,16 +91,16 @@
 
       .btn{
         border: none;
-        background: map-get($colors, "success-darker");
+        background: map-get($colors, "success-darkest");
         box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3) ;
       }
     }
     &.purple{
-      background: map-get($colors, "purple");
+      background: map-get($colors, "purple-dark");
 
       .btn{
         border: none;
-        background: map-get($colors, "purple-dark");
+        background: map-get($colors, "purple-darkest");
         box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3) ;
       }
     }
@@ -116,17 +129,17 @@
     }
     .price{
       width: 100px;
-      padding-left: 10px;
+      padding-right: 10px;
     }
     .boxes{
-      width: 60px;
+      width: 50px;
     }
     .volumn{
       width: 90px;
     }
     .btns{
-      width: 108px;
-      padding-left: 10px;
+      width: 113px;
+      padding-left: 15px;
     }
 
     &.forsingle{
@@ -145,6 +158,19 @@
             color: #fff;
             background: map-get($colors, "purple-dark");
             border-color: map-get($colors, "purple-dark");
+          }
+        }
+
+        &.grey{
+          color: map-get($colors, "info");
+          .btn {
+            color: map-get($colors, "info-dark");
+            background: map-get($colors, "info-lightest");
+            border-color: map-get($colors, "info-light");
+          }
+          .gs-tag-outer.purple{
+            color: map-get($colors, "purple-light");
+            border-color: map-get($colors, "purple-lighter");
           }
         }
 

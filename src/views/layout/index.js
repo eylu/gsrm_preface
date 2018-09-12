@@ -33,7 +33,7 @@ export default class Layout extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
+        <Navbar color="dark" expand="md">
           <div className="container">
             <NavbarBrand href="/">BeachPrice</NavbarBrand>
             <NavbarToggler onClick={() => this.toggleCollapse()} />

@@ -8,6 +8,18 @@
 
 }
 
+.navbar.bg-dark{
+  background: map-get($colors, "info-darker");
+  color: #fff;
+  a{
+    color: #fff;
+
+    &.active{
+      font-weight: 600;
+    }
+  }
+}
+
 .modal-header{
   .close{
     font-size: 44px;
@@ -16,6 +28,9 @@
     padding: 0;
     text-align: center;
     font-weight: 300;
+  }
+  .modal-title{
+    color: map-get($colors, "info-darkest");
   }
   &.p0{
     padding: 0 0 0 32px;

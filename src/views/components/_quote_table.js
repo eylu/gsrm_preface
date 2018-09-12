@@ -61,6 +61,7 @@ export default class QuoteTable extends Component {
             let isActive = this.state.instantItem && this.state.instantItem._key == quote._key;
             let rowClass = classnames('d-flex flex-nowrap row no-gutters', {
               'active': isActive,
+              'grey': this.state.instantItem && this.state.instantItem._key != quote._key,
             });
 
             let instantText = isActive ? instantSingleMap[this.props.type] : instant;
@@ -89,7 +90,7 @@ export default class QuoteTable extends Component {
                     4.8
                   </span>
                 </div>
-                <div className="cell price">
+                <div className="cell price text-right">
                   <span>${quote.price.toFixed(2)}</span>
                   <span className="fs-10"> lb</span>
                 </div>
@@ -120,7 +121,7 @@ export default class QuoteTable extends Component {
         <div className="gs-table-header">
           <div className="d-flex row no-gutters">
             <div className="cell flex1">COMPANY</div>
-            <div className="cell price">{priceTip}</div>
+            <div className="cell price text-right">{priceTip}</div>
             <div className="cell boxes text-right">BOXES</div>
             <div className="cell volumn text-right">VOLUMN</div>
             {

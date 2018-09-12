@@ -99,11 +99,13 @@ hr {
     font-weight: 700;
     margin-bottom: 0;
     line-height: inherit;
+    color: map-get($colors, "info-darker");
   }
   &-sub-title{
     font-size: 22px;
     margin-bottom: 0;
-    font-weight: 600;
+    font-weight: 700;
+    color: map-get($colors, "info-darker");
   }
 }
 
@@ -161,8 +163,9 @@ hr {
     padding: 2px 5px;
 
     &.purple{
-      border: 1px solid map-get($colors, "purple");
-      background: map-get($colors, "purple-lighter");
+      color: map-get($colors, "purple-darker");
+      border: 1px solid map-get($colors, "purple-light");
+      background: map-get($colors, "purple-lightest");
     }
   }
 }
@@ -181,6 +184,7 @@ hr {
     font-weight: 600;
     font-size: 20px;
     margin-bottom: 16px;
+    color: map-get($colors, "info-darker");
   }
   &-header{
     color: map-get($colors, "info-dark");

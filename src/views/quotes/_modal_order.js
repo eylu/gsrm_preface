@@ -130,7 +130,7 @@ class ModalOrder extends Component {
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="tab1">
               <div className="d-flex">
-                <div className="flex1 quote-modal-item">
+                <div className="flex1 quote-modal-item pr-4">
                   <div className="modal-table">
                     <QuoteTable
                       title={listTitle}
