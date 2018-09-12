@@ -21,21 +21,7 @@ class Home extends Component {
     // console.log(this.props)
   }
 
-  addData() {
-    let size_id = _.random(1, 9);
-    let boxes = _.random(100, 150);
-    let price = _.round(_.random(10.05, 25.99), 2);
-    let t = _.sample(quoteTypeArray);
-    const data = {
-      price: price,
-      boxes: boxes,
-      volumn: boxes * 30,
-      size_id: size_id,
-      type: t
-    };
-    console.log(data)
-    this.props.firebase.push("quotes", data)
-  }
+
 
   render() {
     let quotes = this.props.quotes || {};
@@ -44,17 +30,6 @@ class Home extends Component {
       <div>
         <div className="d-none">
           Home Page.
-          <Button
-            color="danger"
-            onClick={() => {
-              this.addData();
-            }}
-          >
-            Danger!
-          </Button>
-          <div>
-            <span className="hello">这是测试样式</span>
-          </div>
         </div>
         <QuoteShow />
       </div>

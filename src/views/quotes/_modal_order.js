@@ -51,10 +51,8 @@ class ModalOrder extends Component {
     this.setState({
       quoteInstant: quote,
     }, () => {
-      let currentQuantity = this.state.fromData.quantity;
-      if(currentQuantity != ''){
-        this.boxChangHandler(currentQuantity);
-      }
+      let q = quote && quote.boxes ? quote.boxes : 0;
+      this.boxChangHandler(q);
     });
   }
 
