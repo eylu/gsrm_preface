@@ -111,23 +111,55 @@
   }
 
   &-table{
-    table{
-      margin-bottom: 0;
+    .cell{
+      padding: 8px 0;
+    }
+    .price{
+      width: 100px;
+      padding-left: 10px;
+    }
+    .boxes{
+      width: 60px;
+    }
+    .volumn{
+      width: 90px;
+    }
+    .btns{
+      width: 108px;
+      padding-left: 10px;
+    }
 
-      th, td{
-        padding: 8px 0;
+    &.forsingle{
+      .gs-table-title{
+        padding-left: 15px;
       }
-
-      tr{
+      .row{
+        padding-left: 15px;
+        padding-right: 15px;
         &.active{
           color: #fff;
           background: map-get($colors, "info-darker");
-          border-radius: 30px;
-        }
-      }
+          border-radius: 50px;
 
-      tbody{
-        font-weight: 500;
+          .btn {
+            color: #fff;
+            background: map-get($colors, "purple-dark");
+            border-color: map-get($colors, "purple-dark");
+          }
+        }
+
+        .btn{
+          width: 82px;
+        }
+
+        .btn-close{
+          font-size: 18px;
+          display: inline-block;
+          width: 24px;
+          line-height: 24px;
+          text-align: center;
+          cursor: pointer;
+        }
       }
     }
   }

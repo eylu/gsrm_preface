@@ -90,15 +90,6 @@ hr {
  * global layout
  */
 
-.gs-container {
-  width: auto;
-  margin: 0 auto;
-
-  @media(min-width: 1200px){
-    width: 1200px;
-  }
-}
-
 .gs-page {
   padding-top: 20px;
   padding-bottom: 50px;
@@ -128,7 +119,7 @@ hr {
     padding: 20px 0;
     font-size: 20px;
     font-weight: 700;
-    margin-right: 32px;
+    margin-right: 40px;
 
 
     &.active{
@@ -177,15 +168,30 @@ hr {
 }
 
 .gs-table{
-  &-thead{
-    &-small{
-      td, th{
-        color: map-get($colors, "info-dark");
-        font-size: 10px;
-      }
+  white-space: nowrap;
+
+  .row{
+    .col{
+      padding-top: 8px;
+      padding-bottom: 8px;
     }
   }
+
+  &-title{
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  &-header{
+    color: map-get($colors, "info-dark");
+    font-size: 10px;
+  }
+  &-body{
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
+
 
 .gs-empty{
   text-align: center;

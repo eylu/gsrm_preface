@@ -47,23 +47,42 @@ class ModalOrder extends Component {
     }
   }
 
+  quoteItemClickHandler(quote, key) {
+    this.setState({
+      quoteInstant: quote,
+    }, () => {
+      let currentQuantity = this.state.fromData.quantity;
+      if(currentQuantity != ''){
+        this.boxChangHandler(currentQuantity);
+      }
+    });
+  }
+
   boxChangHandler(val) {
 
-    let quantity =  parseInt(val);
+    let quantity =  parseInt(val) || 0;
     let quoteData = this.getQuoteData();
     let boxesSum = _.sumBy(quoteData, 'boxes');
-    if(quantity > boxesSum){
-      quantity = boxesSum;
-      noticeShow('Two much !', 'notice');
+
+    if(this.state.quoteInstant && quantity > this.state.quoteInstant.boxes){
+      quantity = this.state.quoteInstant.boxes;
+      noticeShow('Too much !', 'notice');
     }
 
-    let orderData = takeArrayBySum(quoteData, 'boxes', quantity);
+
+    if(quantity > boxesSum){
+      quantity = boxesSum;
+      noticeShow('Too much !', 'notice');
+    }
+
+    let dataArray = this.state.quoteInstant ? [this.state.quoteInstant] : quoteData;
+    let orderData = takeArrayBySum(dataArray, 'boxes', quantity);
     let fromData = Object.assign({}, this.state.fromData);
     fromData.orderItems = orderData;
     fromData.quantity = quantity;
     fromData.total_boxes = _.sumBy(orderData, 'boxes');
     fromData.total_volumn = _.sumBy(orderData, 'volumn');
-    fromData.total_money = _.sumBy(orderData, function(it){ return it.volumn * it.price });
+    fromData.total_money =  _.sumBy(orderData, function(it){ return it.volumn * it.price });
 
     this.setState({fromData});
 
@@ -87,7 +106,7 @@ class ModalOrder extends Component {
              centered={true}
              className="modal-full"
              >
-        <ModalHeader className="p0" toggle={() => this.props.toggleModal()}>
+        <ModalHeader className="p0 pl-5" toggle={() => this.props.toggleModal()}>
           <Nav className="gs-tab">
             <NavItem>
               <NavLink
@@ -112,11 +131,15 @@ class ModalOrder extends Component {
             <TabPane tabId="tab1">
               <div className="d-flex">
                 <div className="flex1 quote-modal-item">
-                  <div className="fs-20 fw-600 mb-3">
-                    {listTitle}
-                  </div>
                   <div className="modal-table">
-                    <QuoteTable type={this.props.quoteType} data={quoteData} forsingle={true} />
+                    <QuoteTable
+                      title={listTitle}
+                      type={this.props.quoteType}
+                      data={quoteData}
+                      forsingle={true}
+                      className="forsingle"
+                      itemClickHandler={(quote, key) => this.quoteItemClickHandler(quote, key)}
+                      />
                   </div>
                 </div>
                 <div className="flex1 quote-modal-item quote-modal-form gs-form">
@@ -170,7 +193,7 @@ class ModalOrder extends Component {
                         <div className="fs-12 fw-400 color-info-dark">TOTAL VOL.</div>
                       </div>
                       <div className="col col-4 text-right">
-                        $ {(this.state.fromData.total_money/this.state.fromData.total_volumn).toFixed(2)} lb
+                        $ {((this.state.fromData.total_money/this.state.fromData.total_volumn)||0).toFixed(2)} lb
                         <div className="fs-12 fw-400 color-info-dark">AVG PRICE</div>
                       </div>
                       <div className="col col-3 fw-600 text-right">
@@ -221,6 +244,7 @@ const defaultState = {
   fromData: {
     quantity: '',
   },
+  quoteInstant: null,
 };
 
 function takeArrayBySum(list , key , sum = 0) {

@@ -13,71 +13,126 @@ export default class QuoteTable extends Component {
   }
 
   quoteItemClick(quote, key) {
-    console.log(key, quote);
     this.setState({
       instantItem: quote,
+    }, () => {
+      this.props.itemClickHandler(quote, key);
     });
+  }
+
+  cancelInstant(quote, key) {
+    this.setState({
+      instantItem: null,
+    }, () => {
+      this.props.itemClickHandler(null);
+    });
+  }
+
+  renderTitle() {
+    if(!this.props.title) {
+      return;
+    }
+    return (
+      <div className="gs-table-title">
+        {this.props.title}
+      </div>
+    );
   }
 
 
   renderItemList(list){
     if(_.isEmpty(list)) {
       return(
-        <tbody>
-          <tr>
-            <td colSpan="4">
-              <div className="gs-empty">No data.</div>
-            </td>
-          </tr>
-        </tbody>
+        <div className="gs-table-body">
+          <div className="gs-empty">No data.</div>
+        </div>
       );
     }
 
+    let instant = instantMap[this.props.type];
+
     return(
-      <tbody>
+      <div className="gs-table-body">
         {
           _.map(this.props.data, (quote, key) => {
             let button = null;
+            let close = <span className="btn-close">&nbsp;</span>;
+
+            let isActive = this.state.instantItem && this.state.instantItem._key == quote._key;
+            let rowClass = classnames('d-flex flex-nowrap row no-gutters', {
+              'active': isActive,
+            });
+
+            let instantText = isActive ? instantSingleMap[this.props.type] : instant;
+
             if(this.props.forsingle) {
+              if(isActive) {
+                close = (
+                  <span className="btn-close" title="Cancel" onClick={() => this.cancelInstant(quote, key)}>&times;</span>
+                );
+              }
               button = (
-                <td className="text-right">
-                  <Button outline color="secondary" size="sm" className="btn-mini" onClick={() => this.quoteItemClick(quote, key)}>Instant Sell</Button>
-                </td>
+                <div className="cell btns text-right">
+                  <Button outline color="secondary" size="sm" className="btn-mini" onClick={() => this.quoteItemClick(quote, key)}>
+                    {instantText}
+                  </Button>
+                  {close}
+                </div>
               );
             }
+
             return (
-              <tr key={key} className={this.state.instantItem && this.state.instantItem._key == quote._key ? 'active': ''}>
-                <td>
+              <div key={key} className={rowClass}>
+                <div className="cell flex1">
                   <span>Verified User</span>
                   <span className="gs-tag gs-tag-outer purple ml-3">
                     4.8
                   </span>
-                </td>
-                <td>
+                </div>
+                <div className="cell price">
                   <span>${quote.price.toFixed(2)}</span>
                   <span className="fs-10"> lb</span>
-                </td>
-                <td className="text-right">
+                </div>
+                <div className="cell boxes text-right">
                   {quote.boxes}
-                </td>
-                <td className="text-right">
-                  <span>{quote.volumn || quote.volume}</span>
+                </div>
+                <div className="cell volumn text-right">
+                  <span>{quote.volumn}</span>
                   <span className="fs-10"> lb</span>
-                </td>
+                </div>
                 {button}
-              </tr>
+              </div>
             );
           })
         }
-      </tbody>
+      </div>
     );
 
   }
 
   render() {
     let priceTip = priceMap[this.props.type];
-    let classWrapper = classnames('quote-list-table', this.props.className);
+    let classWrapper = classnames('quote-list-table gs-table', this.props.className);
 
+    return (
+      <div className={classWrapper}>
+        {this.renderTitle()}
+        <div className="gs-table-header">
+          <div className="d-flex row no-gutters">
+            <div className="cell flex1">COMPANY</div>
+            <div className="cell price">{priceTip}</div>
+            <div className="cell boxes text-right">BOXES</div>
+            <div className="cell volumn text-right">VOLUMN</div>
+            {
+              this.props.forsingle ? (
+                <div className="cell btns"></div>
+              ) : ''
+            }
+          </div>
+        </div>
+        {this.renderItemList(this.props.data)}
+      </div>
+    );
 
     return (
       <div className={classWrapper}>
@@ -101,3 +156,15 @@ const priceMap = {
   sell: "ASKING PRICE",
   buy: "OFFER PRICE",
 };
+
+const instantMap = {
+  sell: "Instant Buy",
+  buy: "Instant Sell",
+};
+
+const instantSingleMap = {
+  sell: "Buying",
+  buy: "Selling",
+};
+
+

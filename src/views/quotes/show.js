@@ -80,9 +80,9 @@ class QuoteShow extends Component {
       }
     });
 
-    quotesBuyer = _.sortBy(quotesBuyer, function(a){
+    quotesBuyer = _.reverse(_.sortBy(quotesBuyer, function(a){
       return a.price
-    });
+    }));
 
     quotesSeller = _.sortBy(quotesSeller, function(a){
       return a.price

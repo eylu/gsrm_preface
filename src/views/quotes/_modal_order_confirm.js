@@ -55,6 +55,11 @@ export default class ModalOrderConfirm extends Component {
             <div className="text-left">
               <QuoteTable type={this.props.quoteType} data={this.props.orderFormData.orderItems} />
             </div>
+            <hr />
+            <div className="text-right">
+              <div className="fs-16 fw-600">${(this.props.orderFormData.total_money||0).toFixed(2)}</div>
+              <div className="fs-12">TOTAL PRICE</div>
+            </div>
             <div className="page-confirm-buttons">
               <Button color="primary" size="lg" block onClick={() => this.orderSubmit()}>
                 CONFIRM
