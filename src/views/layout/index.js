@@ -15,6 +15,8 @@ import {
   DropdownItem,
 } from "reactstrap";
 
+import Image from "../components/_image";
+
 export default class Layout extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +37,9 @@ export default class Layout extends Component {
       <div>
         <Navbar color="dark" expand="md">
           <div className="container">
-            <Link to="/" className="navbar-brand">BeachPrice</Link>
+            <Link to="/" className="navbar-brand">
+              <Image className="logo" source="logo" />
+            </Link>
             <NavbarToggler onClick={() => this.toggleCollapse()} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>

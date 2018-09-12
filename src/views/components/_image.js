@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classnames from 'classnames';
 
-
+import imgLogo from "../../assets/images/logo.png";
 import imgAbalone from "../../assets/images/categories/abalone.png";
 import imgChart from "../../assets/images/tmpimgs/chart.png";
 
@@ -21,6 +21,7 @@ export default class Image extends Component {
 }
 
 const imgMap = {
+  "logo": imgLogo,
   "categories/abalone": imgAbalone,
   "tmpimgs/chart": imgChart,
 };

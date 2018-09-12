@@ -85,6 +85,7 @@
     border-radius: $radius;
     padding: 8px 8px 8px 24px;
     color: #fff;
+    height: 68px;
 
     &.success{
       background: map-get($colors, "success");
@@ -116,10 +117,11 @@
       line-height: 1;
     }
     .btn{
-      padding: 10px 1.2em 12px;
+      padding: 0 1.2em 2px;
       font-size: 26px;
       font-weight: 600;
       line-height: 1;
+      height: 52px;
     }
   }
 

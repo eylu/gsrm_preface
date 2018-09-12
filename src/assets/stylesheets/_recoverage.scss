@@ -9,9 +9,17 @@
 }
 
 .navbar{
+  .nav-link{
+    height: 40px;
+    line-height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   &.bg-dark{
-    background: map-get($colors, "info-darker");
+    background: map-get($colors, "info-darker") !important;
     color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
     a{
       color: #fff;
 
