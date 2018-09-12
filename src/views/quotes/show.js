@@ -88,6 +88,9 @@ class QuoteShow extends Component {
       return a.price
     });
 
+    let quotesBuyerShow = _.take(quotesBuyer, 5);
+    let quotesSellerShow = _.take(quotesSeller, 5);
+
 
     return (
       <div className="gs-page quote-show-page">
@@ -96,7 +99,7 @@ class QuoteShow extends Component {
             <h1 className="gs-page-title">
               American Lobster
             </h1>
-            <Image className="ml-3" />
+            <Image className="gs-avator ml-3" source="categories/abalone" />
           </div>
           <div>
             <div className="gs-tag mr-1">UNITED STATES</div>
@@ -106,24 +109,26 @@ class QuoteShow extends Component {
         </div>
         <div className="quote-body">
           <div className="d-flex">
-            <div className="quote-sizes">
-              <div className="quote-sizes-title">SIZES</div>
-              <div className="quote-sizes-list">
-                {sizes.map((size, i) => {
-                  let sizeItemClass = classnames('size', {
-                    "active": this.state.quoteSize.selected.id == size.id,
-                  });
-                  return (
-                    <div className={sizeItemClass} key={i} onClick={() => this.changeSize(size, i)}>
-                      <div className="size-bg">
-                        <span className="label">{size.label}</span>
-                        <span className="max-price">
-                          ${size.last_price} lb
-                        </span>
+            <div>
+              <div className="quote-sizes">
+                <div className="quote-sizes-title">SIZES</div>
+                <div className="quote-sizes-list">
+                  {sizes.map((size, i) => {
+                    let sizeItemClass = classnames('size', {
+                      "active": this.state.quoteSize.selected.id == size.id,
+                    });
+                    return (
+                      <div className={sizeItemClass} key={i} onClick={() => this.changeSize(size, i)}>
+                        <div className="size-bg">
+                          <span className="label">{size.label}</span>
+                          <span className="max-price">
+                            ${size.last_price} lb
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
             <div className="flex1 pl-4">
@@ -145,9 +150,9 @@ class QuoteShow extends Component {
                         </Button>
                       </div>
                     </div>
-                    <QuoteTable type="buy" className="px-3 pt-3" data={quotesBuyer} />
+                    <QuoteTable type="buy" className="px-3 pt-3" data={quotesBuyerShow} />
                     <div className="quote-list-more">
-                      More
+                      <span onClick={() => this.toggleOrderModal('buy')}>More</span>
                     </div>
                   </div>
                 </div>
@@ -167,9 +172,9 @@ class QuoteShow extends Component {
                         </Button>
                       </div>
                     </div>
-                    <QuoteTable type="sell" className="px-3 pt-3" data={quotesSeller}  />
+                    <QuoteTable type="sell" className="px-3 pt-3" data={quotesSellerShow}  />
                     <div className="quote-list-more">
-                      More
+                      <span onClick={() => this.toggleOrderModal('sell')}>More</span>
                     </div>
                   </div>
                 </div>
@@ -184,7 +189,7 @@ class QuoteShow extends Component {
                   <div className="gs-tag mr-2 transparent">YEAR</div>
                 </div>
                 <div className="quote-chart">
-
+                  <Image className="" source="tmpimgs/chart" />
                 </div>
               </div>
 

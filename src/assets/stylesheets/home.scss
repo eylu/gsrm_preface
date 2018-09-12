@@ -38,7 +38,7 @@
 
     .max-price{
       display: block;
-      font-size: 10px;
+      font-size: 12px;
       color: map-get($colors, "info-dark");
     }
 
@@ -92,7 +92,7 @@
       .btn{
         border: none;
         background: map-get($colors, "success-darkest");
-        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3) ;
+        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2) ;
       }
     }
     &.purple{
@@ -101,7 +101,7 @@
       .btn{
         border: none;
         background: map-get($colors, "purple-darkest");
-        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3) ;
+        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2) ;
       }
     }
 
@@ -116,7 +116,7 @@
       line-height: 1;
     }
     .btn{
-      padding: 0.5em 1.2em;
+      padding: 10px 1.2em 12px;
       font-size: 26px;
       font-weight: 600;
       line-height: 1;
@@ -193,14 +193,21 @@
   &-more{
     text-align: right;
     padding: 8px 16px;
+
+    span{
+      cursor: pointer;
+    }
   }
 }
 
 .quote-chart{
   margin-top: 24px;
-  height: 300px;
   border: 1px solid map-get($colors, "info-light");
   background: map-get($colors, "info-lightest");
+
+  img{
+    width: 100%;
+  }
 }
 
 
