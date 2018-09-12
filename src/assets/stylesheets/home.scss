@@ -5,6 +5,13 @@
 .quote-page{}
 .quote-header{
   padding-top: 24px;
+  .gs-avator{
+    width: inherit;
+    img{
+      max-width: inherit;
+      height: 100%;
+    }
+  }
 }
 .quote-body{
   padding-top: 50px;
@@ -126,6 +133,7 @@
   }
 
   &-table{
+
     .cell{
       padding: 8px 0;
     }
@@ -204,8 +212,7 @@
 
 .quote-chart{
   margin-top: 24px;
-  border: 1px solid map-get($colors, "info-light");
-  background: map-get($colors, "info-lightest");
+
 
   img{
     width: 100%;

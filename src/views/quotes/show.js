@@ -88,8 +88,8 @@ class QuoteShow extends Component {
       return a.price
     });
 
-    let quotesBuyerShow = _.take(quotesBuyer, 5);
-    let quotesSellerShow = _.take(quotesSeller, 5);
+    let quotesBuyerShow = _.take(quotesBuyer, 10);
+    let quotesSellerShow = _.take(quotesSeller, 10);
 
 
     return (
