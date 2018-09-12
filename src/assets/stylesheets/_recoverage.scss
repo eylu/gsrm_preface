@@ -8,15 +8,22 @@
 
 }
 
-.navbar.bg-dark{
-  background: map-get($colors, "info-darker");
-  color: #fff;
-  a{
+.navbar{
+  &.bg-dark{
+    background: map-get($colors, "info-darker");
     color: #fff;
+    a{
+      color: #fff;
 
-    &.active{
-      font-weight: 600;
+      &.active{
+        font-weight: 600;
+      }
     }
+  }
+
+  &-brand{
+    font-size: 20px;
+    font-weight: 700;
   }
 }
 

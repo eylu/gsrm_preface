@@ -35,7 +35,7 @@ export default class Layout extends Component {
       <div>
         <Navbar color="dark" expand="md">
           <div className="container">
-            <NavbarBrand href="/">BeachPrice</NavbarBrand>
+            <Link to="/" className="navbar-brand">BeachPrice</Link>
             <NavbarToggler onClick={() => this.toggleCollapse()} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
