@@ -131,10 +131,10 @@ class QuoteShow extends Component {
                 </div>
               </div>
             </div>
-            <div className="flex1 pl-4">
+            <div className="flex1">
               <h2 className="gs-page-sub-title mb-4">EXCHANGE</h2>
               <div className="d-flex mb-5">
-                <div className="flex1">
+                <div className="flex1" style={{marginRight: 32}}>
                   <div className="quote-list">
                     <div className="quote-list-title">
                       BUYERS
@@ -156,7 +156,7 @@ class QuoteShow extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="pl-4 flex1">
+                <div className="flex1">
                   <div className="quote-list">
                     <div className="quote-list-title">
                       SELLERS
