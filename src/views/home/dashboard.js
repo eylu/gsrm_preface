@@ -27,7 +27,8 @@ class Dashboard extends Component {
       size_id: size_id,
       type: t
     };
-    console.log(data)
+    console.log(data);
+    alert("submit data: " + JSON.stringify(data));
     this.props.firebase.push("quotes", data)
   }
 

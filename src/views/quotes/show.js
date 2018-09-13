@@ -24,6 +24,7 @@ class QuoteShow extends Component {
         isOrderOpen: false,
         isConfirmOpen: false,
         type: '',
+        tabId: '',
       },
       quoteSize: {
         selected: sizes[0] || {},
@@ -36,9 +37,10 @@ class QuoteShow extends Component {
     // console.log(this.props)
   }
 
-  toggleOrderModal(type) {
+  toggleOrderModal(type, tabId) {
     let { modalOrder } = this.state;
     modalOrder.isOrderOpen = !modalOrder.isOrderOpen;
+    modalOrder.tabId = tabId || '';
     if(type) {
       modalOrder.type = type;
     }
@@ -151,7 +153,10 @@ class QuoteShow extends Component {
                       </div>
                     </div>
                     <QuoteTable type="buy" className="px-3 pt-3" data={quotesBuyerShow} />
-                    <div className="quote-list-more">
+                    <div className="quote-list-more d-flex align-items-center">
+                      <div className="flex1">
+                        <Button outline color="secondary" size="sm" onClick={() => this.toggleOrderModal('buy', 'tab2')}>Make an Offer</Button>
+                      </div>
                       <span onClick={() => this.toggleOrderModal('buy')}>More</span>
                     </div>
                   </div>
@@ -173,7 +178,10 @@ class QuoteShow extends Component {
                       </div>
                     </div>
                     <QuoteTable type="sell" className="px-3 pt-3" data={quotesSellerShow}  />
-                    <div className="quote-list-more">
+                    <div className="quote-list-more d-flex align-items-center">
+                      <div className="flex1">
+                        <Button outline color="secondary" size="sm" onClick={() => this.toggleOrderModal('sell', 'tab2')}>Purpose My Asking Price</Button>
+                      </div>
                       <span onClick={() => this.toggleOrderModal('sell')}>More</span>
                     </div>
                   </div>
@@ -201,6 +209,7 @@ class QuoteShow extends Component {
                     quoteSize={this.state.quoteSize.selected}
                     quotesBuyer={quotesBuyer}
                     quotesSeller={quotesSeller}
+                    tabId={this.state.modalOrder.tabId}
                     toggleModal={() => this.toggleOrderModal()}
                     toggleConfirmModal={() => this.toggleConfirmModal()}
                     setOrderFormData={(formData) => this.setOrderFormData(formData)}

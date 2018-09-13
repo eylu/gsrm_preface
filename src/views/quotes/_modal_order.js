@@ -25,12 +25,15 @@ class ModalOrder extends Component {
 
   componentWillReceiveProps(nextProps){
     if(!this.props.isOpen && nextProps.isOpen){
-      this.initFormData();
+      this.initFormData(nextProps);
     }
   }
 
-  initFormData() {
+  initFormData(nextProps) {
     let newState = Object.assign({}, defaultState);
+    if(nextProps && nextProps.tabId){
+      newState.activeTab = nextProps.tabId;
+    }
     this.setState({...newState});
   }
 
