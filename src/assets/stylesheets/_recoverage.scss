@@ -119,6 +119,16 @@
 
 }
 
+
+.btn.btn-outline-secondary {
+  color: map-get($colors, "info-darker");
+  border-color: map-get($colors, "info-darker");
+
+  &:hover{
+    color: #fff;
+  };
+}
+
 .btn-mini{
   padding: 2px 8px;
   font-size: 10px;

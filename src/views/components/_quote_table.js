@@ -55,6 +55,7 @@ export default class QuoteTable extends Component {
       <div className="gs-table-body">
         {
           _.map(this.props.data, (quote, key) => {
+            console.log('--->',quote)
             let button = null;
             let close = <span className="btn-close">&nbsp;</span>;
 
