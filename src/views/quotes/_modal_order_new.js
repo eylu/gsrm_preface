@@ -12,18 +12,23 @@ import {
 import find from "lodash/find";
 import get from "lodash/get";
 import result from "lodash/result";
-import { quoteType, sizes } from "../../config/enum";
 
 class ModalOrderCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      form: [{ size_id: 1, price: 0, boxes: 0, volume: 0 }],
+      form: [],
       dropdownOpen: false
     };
   }
   componentDidMount() {
-    // console.log(this.props)
+    console.log(this.getSize());
+    const size_id = get(this.getSize()[0], "id");
+    console.log(size_id)
+    if (!size_id) {
+      return;
+    }
+    this.setState({ form: [{ size_id, price: 0, boxes: 0, volume: 0 }] });
   }
 
   onChange = (e, index) => {
@@ -40,11 +45,19 @@ class ModalOrderCreate extends Component {
     this.setState({ form });
   };
 
+  getSize = () => {
+    const { category } = this.props;
+    return get(category, "attr_values", []);
+  };
+
   renderSize = size_id =>
-    result(find(sizes, o => get(o, "id") === Number(size_id)), "value");
+    result(
+      find(this.getSize(), o => get(o, "id") === Number(size_id)),
+      "value"
+    );
 
   renderPriceScope = size_id => {
-    const size = find(sizes, o => get(o, "id") === Number(size_id));
+    const size = find(this.getSize(), o => get(o, "id") === Number(size_id));
     const max_price = get(size, "max_price");
     const min_price = get(size, "min_price");
     return (
@@ -129,7 +142,7 @@ class ModalOrderCreate extends Component {
       <DropdownToggle className="footer-btn drop-down">
         ADD A GRADE
       </DropdownToggle>
-      <DropdownMenu>{sizes.map(this.renderDropDownItem)}</DropdownMenu>
+      <DropdownMenu>{this.getSize().map(this.renderDropDownItem)}</DropdownMenu>
     </Dropdown>
   );
 
@@ -148,7 +161,6 @@ class ModalOrderCreate extends Component {
 
   render() {
     const { form } = this.state;
-    console.log(this.props.quoteType)
     return (
       <div className="form-create quote-modal-form">
         <form>
@@ -167,7 +179,7 @@ class ModalOrderCreate extends Component {
 
 function mapStateToProps(state) {
   return {
-    quotes: state.firebase.data.quotes,
+    quotes: state.firebase.data.quotes
   };
 }
 

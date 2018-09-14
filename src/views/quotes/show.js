@@ -73,7 +73,6 @@ class QuoteShow extends Component {
 
   render() {
     let category = this.getCategory();
-    console.log(this.props, category);
     let quotesHash = this.props.quotes || {};
     let quotesBuyer = [];
     let quotesSeller = [];
@@ -214,7 +213,9 @@ class QuoteShow extends Component {
             </div>
           </div>
         </div>
-        <ModalOrder isOpen={this.state.modalOrder.isOrderOpen}
+        <ModalOrder 
+                    category = {category}
+                    isOpen={this.state.modalOrder.isOrderOpen}
                     quoteType={this.state.modalOrder.type}
                     quoteSize={this.state.quoteSize.selected}
                     quotesBuyer={quotesBuyer}
