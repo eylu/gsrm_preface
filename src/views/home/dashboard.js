@@ -23,7 +23,7 @@ class Dashboard extends Component {
     const data = {
       price: price,
       boxes: boxes,
-      volumn: boxes * 30,
+      volume: boxes * 30,
       size_id: size_id,
       type: t
     };

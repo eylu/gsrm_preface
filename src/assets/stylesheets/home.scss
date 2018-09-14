@@ -16,6 +16,7 @@
 .quote-body{
   padding-top: 50px;
 }
+
 .quote-sizes{
   width: 128px;
   background: map-get($colors, "primary-bg");
@@ -81,6 +82,7 @@
 
   }
 }
+
 .quote-list{
 
   &-title{
@@ -94,7 +96,7 @@
     border-radius: $radius;
     padding: 8px 8px 8px 24px;
     color: #fff;
-    height: 68px;
+    height: 76px;
 
     &.success{
       background: map-get($colors, "success");
@@ -102,7 +104,7 @@
       .btn{
         border: none;
         background: map-get($colors, "success-darkest");
-        box-shadow: 0 1px 2px rgba(0,0,0,0.2), inset 0 0 3px rgba(0, 0, 0, 0.1) !important ;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
 
         &:hover{
           background: map-get($colors, "success-darker");
@@ -115,7 +117,7 @@
       .btn{
         border: none;
         background: map-get($colors, "purple-darkest");
-        box-shadow: 0 2px 3px rgba(0,0,0,0.3), inset 0 0 3px rgba(0, 0, 0, 0.1) !important;
+        box-shadow: 0 2px 3px rgba(0,0,0,0.3);
 
         &:hover{
           background: map-get($colors, "purple-darker");
@@ -138,7 +140,15 @@
       font-size: 26px;
       font-weight: 600;
       line-height: 1;
-      height: 52px;
+      height: 60px;
+
+      .txt-secondary{
+        display: block;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 400;
+        margin-top: 2px;
+      }
     }
   }
 

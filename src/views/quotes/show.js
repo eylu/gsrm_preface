@@ -149,6 +149,7 @@ class QuoteShow extends Component {
                         </div>
                         <Button onClick={() => this.toggleOrderModal('buy')}>
                           SELL
+                          <span className="txt-secondary">or Ask Price</span>
                         </Button>
                       </div>
                     </div>
@@ -174,6 +175,7 @@ class QuoteShow extends Component {
                         </div>
                         <Button onClick={() => this.toggleOrderModal('sell')}>
                           BUY
+                          <span className="txt-secondary">or Place an Offer</span>
                         </Button>
                       </div>
                     </div>

@@ -99,7 +99,7 @@ export default class QuoteTable extends Component {
                   {quote.boxes}
                 </div>
                 <div className="cell volumn text-right">
-                  <span>{quote.volumn}</span>
+                  <span>{quote.volume}</span>
                   <span className="fs-10"> lb</span>
                 </div>
                 {button}
@@ -124,7 +124,7 @@ export default class QuoteTable extends Component {
             <div className="cell flex1">COMPANY</div>
             <div className="cell price text-right">{priceTip}</div>
             <div className="cell boxes text-right">BOXES</div>
-            <div className="cell volumn text-right">VOLUMN</div>
+            <div className="cell volumn text-right">VOLUME</div>
             {
               this.props.forsingle ? (
                 <div className="cell btns"></div>
@@ -144,7 +144,7 @@ export default class QuoteTable extends Component {
               <td>COMPANY</td>
               <td>{priceTip}</td>
               <td className="text-right">BOXES</td>
-              <td className="text-right">VOLUMN</td>
+              <td className="text-right">VOLUME</td>
             </tr>
           </thead>
           {this.renderItemList(this.props.data)}

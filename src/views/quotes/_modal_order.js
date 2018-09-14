@@ -82,8 +82,8 @@ class ModalOrder extends Component {
     fromData.orderItems = orderData;
     fromData.quantity = quantity;
     fromData.total_boxes = _.sumBy(orderData, 'boxes');
-    fromData.total_volumn = _.sumBy(orderData, 'volumn');
-    fromData.total_money =  _.sumBy(orderData, function(it){ return it.volumn * it.price });
+    fromData.total_volume = _.sumBy(orderData, 'volume');
+    fromData.total_money =  _.sumBy(orderData, function(it){ return it.volume * it.price });
 
     this.setState({fromData});
 
@@ -172,13 +172,13 @@ class ModalOrder extends Component {
                             {item.boxes} <span className="fs-18">Boxes</span>
                           </div>
                           <div className="col col-2 text-right">
-                            {item.volumn} <span className="fs-12">lb</span>
+                            {item.volume} <span className="fs-12">lb</span>
                           </div>
                           <div className="col col-4 text-right">
                             @ $ {item.price.toFixed(2)} <span className="fs-12">lb</span>
                           </div>
                           <div className="col col-3 text-right">
-                            $ {(item.price * item.volumn).toFixed(2)}
+                            $ {(item.price * item.volume).toFixed(2)}
                           </div>
                         </div>
                       );
@@ -190,11 +190,11 @@ class ModalOrder extends Component {
                         <div className="fs-12 fw-400 color-info-dark">TOTAL BOXES</div>
                       </div>
                       <div className="col col-2 text-right">
-                        {this.state.fromData.total_volumn || 0} lb
+                        {this.state.fromData.total_volume || 0} lb
                         <div className="fs-12 fw-400 color-info-dark">TOTAL VOL.</div>
                       </div>
                       <div className="col col-4 text-right">
-                        $ {((this.state.fromData.total_money/this.state.fromData.total_volumn)||0).toFixed(2)} lb
+                        $ {((this.state.fromData.total_money/this.state.fromData.total_volume)||0).toFixed(2)} lb
                         <div className="fs-12 fw-400 color-info-dark">AVG PRICE</div>
                       </div>
                       <div className="col col-3 fw-600 text-right">
@@ -257,7 +257,7 @@ function takeArrayBySum(list , key , sum = 0) {
     if(sum < item[key] && sum > 0){
       let o = Object.assign({}, item)
       o[key] = sum;
-      o.volumn = sum * 30;
+      o.volume = sum * 30;
       result.push(o);
     }
     sum -= item[key];
