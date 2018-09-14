@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import noticeShow from "../../utils/notice";
 import { quoteType } from "../../config/enum";
 import QuoteTable from "../components/_quote_table";
-
+import OrderCreate from "./_modal_order_new";
 
 class ModalOrder extends Component {
   constructor(props) {
@@ -100,7 +100,7 @@ class ModalOrder extends Component {
     let pushTip = pushMap[this.props.quoteType];
     let listTitle = listTitleMap[this.props.quoteType];
     let quoteData = this.getQuoteData();
-
+    // this.props.isOpen
     return(
       <Modal isOpen={this.props.isOpen}
              toggle={() => this.props.toggleModal()}
@@ -212,7 +212,7 @@ class ModalOrder extends Component {
               </div>
             </TabPane>
             <TabPane tabId="tab2">
-              Tab2
+              <OrderCreate quoteType={this.props.quoteType} />
             </TabPane>
           </TabContent>
         </ModalBody>

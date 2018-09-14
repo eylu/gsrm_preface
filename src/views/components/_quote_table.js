@@ -91,7 +91,7 @@ export default class QuoteTable extends Component {
                   </span>
                 </div>
                 <div className="cell price text-right">
-                  <span>${quote.price.toFixed(2)}</span>
+                  <span>${Number(quote.price).toFixed(2)}</span>
                   <span className="fs-10"> lb</span>
                 </div>
                 <div className="cell boxes text-right">
