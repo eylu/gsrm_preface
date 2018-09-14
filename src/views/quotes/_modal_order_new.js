@@ -66,10 +66,10 @@ class ModalOrderCreate extends Component {
       key={index}
       className="d-flex flex-nowrap justify-content-between align-items-center row"
     >
-      <div className="cell size flex-grow-1 text-nowrap">
+      <div className="cell size flex-grow-1 flex-fill text-nowrap">
         {this.renderSize(size_id)}
       </div>
-      <div className="cell">
+      <div className="w260 cell">
         <label className="input-title">Price</label>
         <input
           name="price"
@@ -80,7 +80,7 @@ class ModalOrderCreate extends Component {
           }}
         />
       </div>
-      <div className="cell">
+      <div className="w260 cell">
         <label className="input-title">Boxes</label>
         <input
           name="boxes"
