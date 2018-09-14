@@ -160,7 +160,7 @@ class QuoteShow extends Component {
                         </Button>
                       </div>
                     </div>
-                    <QuoteTable type="buy" className="px-3 pt-3" data={quotesBuyerShow} />
+                    <QuoteTable type="buy" className="px-3 pt-3" linearShow={true} data={quotesBuyerShow} />
                     <div className="quote-list-more d-flex align-items-center">
                       <div className="flex1">
                         <Button outline color="secondary" size="sm" onClick={() => this.toggleOrderModal('buy', 'tab2')}>Make an Offer</Button>
@@ -186,7 +186,7 @@ class QuoteShow extends Component {
                         </Button>
                       </div>
                     </div>
-                    <QuoteTable type="sell" className="px-3 pt-3" data={quotesSellerShow}  />
+                    <QuoteTable type="sell" className="px-3 pt-3" linearShow={true} data={quotesSellerShow}  />
                     <div className="quote-list-more d-flex align-items-center">
                       <div className="flex1">
                         <Button outline color="secondary" size="sm" onClick={() => this.toggleOrderModal('sell', 'tab2')}>Purpose My Asking Price</Button>
@@ -213,7 +213,7 @@ class QuoteShow extends Component {
             </div>
           </div>
         </div>
-        <ModalOrder 
+        <ModalOrder
                     category = {category}
                     isOpen={this.state.modalOrder.isOrderOpen}
                     quoteType={this.state.modalOrder.type}

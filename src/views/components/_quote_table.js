@@ -107,6 +107,11 @@ export default class QuoteTable extends Component {
             );
           })
         }
+        {
+          this.props.linearShow ? (
+            <div className="gs-table-linear">
+            </div>
+          ) : null}
       </div>
     );
 
@@ -133,22 +138,6 @@ export default class QuoteTable extends Component {
           </div>
         </div>
         {this.renderItemList(this.props.data)}
-      </div>
-    );
-
-    return (
-      <div className={classWrapper}>
-        <Table borderless responsive>
-          <thead className="gs-table-thead-small">
-            <tr>
-              <td>COMPANY</td>
-              <td>{priceTip}</td>
-              <td className="text-right">BOXES</td>
-              <td className="text-right">VOLUME</td>
-            </tr>
-          </thead>
-          {this.renderItemList(this.props.data)}
-        </Table>
       </div>
     );
   }
