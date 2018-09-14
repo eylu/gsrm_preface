@@ -129,9 +129,9 @@ class ModalOrderCreate extends Component {
 
   renderIcon = size_id => {
     if (this.isSelected(size_id)) {
-      return <span class="oi oi-circle-x"></span>;
+      return <span className="oi oi-circle-x"></span>;
     }
-    return <span class="oi oi-circle-check color-success-light"></span>;
+    return <span className="oi oi-circle-check color-success-light"></span>;
   };
 
   renderDropDownItem = ({ id, value }, index) => (
@@ -139,10 +139,11 @@ class ModalOrderCreate extends Component {
       key={index}
       value={id}
       onClick={e => {
+        console.log(e.target.value)
         this.addRow({ size_id: Number(e.target.value) });
       }}
       disabled={this.isSelected(id)}
-      className="d-flex justify-content-center align-items-center"
+      className="d-flex justify-content-between align-items-center"
     >
       {value}
       {this.renderIcon(id)}

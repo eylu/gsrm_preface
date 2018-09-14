@@ -102,7 +102,7 @@ class ModalOrder extends Component {
     let quoteData = this.getQuoteData();
     // this.props.isOpen
     return(
-      <Modal isOpen={true}
+      <Modal isOpen={this.props.isOpen}
              toggle={() => this.props.toggleModal()}
              centered={true}
              className="modal-full"
@@ -241,7 +241,7 @@ export const pushMap = {
 
 
 const defaultState = {
-  activeTab: 'tab2',
+  activeTab: 'tab1',
   fromData: {
     quantity: '',
   },

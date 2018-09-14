@@ -30,10 +30,11 @@
       background: #303E4E;
       .dropdown-item {
         color: #fff;
-        text-align: center;
         font-size: 18px;
         line-height: 48px;
         font-weight: bold;
+        padding-left:42px;
+        padding-right: 42px;
         &:hover {
           color:#303E4E;
         }
@@ -42,7 +43,6 @@
         }
         .oi {
           font-size: 24px;
-          margin-left: 22px;
         }
       }
     }
