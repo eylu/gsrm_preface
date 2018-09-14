@@ -23,7 +23,6 @@ class ModalOrderCreate extends Component {
     };
   }
   componentWillMount() {
-    console.log(this.getSize());
     const size_id = get(this.getSize()[0], "id");
     if (!size_id) {
       return;
