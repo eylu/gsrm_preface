@@ -157,6 +157,7 @@ class ModalOrderCreate extends Component {
           Object.assign({}, data, { type: quoteType, category_id: 1 })
         );
       });
+    this.props.closeModal();
   };
 
   render() {

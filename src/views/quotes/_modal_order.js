@@ -212,7 +212,7 @@ class ModalOrder extends Component {
               </div>
             </TabPane>
             <TabPane tabId="tab2">
-              <OrderCreate quoteType={this.props.quoteType} category={this.props.category} />
+              <OrderCreate quoteType={this.props.quoteType} category={this.props.category} closeModal={this.props.toggleModal} />
             </TabPane>
           </TabContent>
         </ModalBody>
