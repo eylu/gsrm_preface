@@ -129,9 +129,9 @@ class ModalOrderCreate extends Component {
 
   renderIcon = size_id => {
     if (this.isSelected(size_id)) {
-      return <span className="tag bg-gray">-</span>;
+      return <span class="oi oi-circle-x"></span>;
     }
-    return <span className="tag bg-success">√</span>;
+    return <span class="oi oi-circle-check color-success-light"></span>;
   };
 
   renderDropDownItem = ({ id, value }, index) => (

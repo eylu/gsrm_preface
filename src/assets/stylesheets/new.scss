@@ -40,20 +40,9 @@
         &:disabled {
           color: #6D7782;
         }
-        .tag {
-          width: 28px;
-          height: 28px;
-          line-height: 28px;
-          border-radius: 100%;
-          color:#fff;
-          display: block;
+        .oi {
+          font-size: 24px;
           margin-left: 22px;
-          &.bg-gray {
-            background: #C4C4C4;
-          }
-          &.bg-success {
-            background: #44D8A3;
-          }
         }
       }
     }
