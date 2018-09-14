@@ -9,7 +9,7 @@ import { Button, Badge, Table, Modal, ModalHeader, ModalBody } from 'reactstrap'
 import classnames from 'classnames';
 
 import noticeShow from "../../utils/notice";
-import { quoteType, sizes } from "../../config/enum";
+import { categories, quoteType, sizes } from "../../config/enum";
 import Image from "../components/_image";
 import QuoteTable from "../components/_quote_table";
 import ModalOrder from "./_modal_order";
@@ -27,7 +27,7 @@ class QuoteShow extends Component {
         tabId: '',
       },
       quoteSize: {
-        selected: sizes[0] || {},
+        selected: this.getCategory().attr_values[0] || {},
       },
       orderFormData: {},
     };
@@ -35,6 +35,10 @@ class QuoteShow extends Component {
 
   componentDidMount() {
     // console.log(this.props)
+  }
+
+  getCategory(){
+   return _.find(categories, ["id", Number(_.get(this.props, "match.params.id", 1))]);
   }
 
   toggleOrderModal(type, tabId) {
@@ -68,6 +72,8 @@ class QuoteShow extends Component {
 
 
   render() {
+    let category = this.getCategory();
+    console.log(this.props, category);
     let quotesHash = this.props.quotes || {};
     let quotesBuyer = [];
     let quotesSeller = [];
@@ -99,9 +105,9 @@ class QuoteShow extends Component {
         <div className="quote-header">
           <div className="d-flex">
             <h1 className="gs-page-title">
-              American Lobster
+              {category.name}
             </h1>
-            <Image className="gs-avator ml-3" source="categories/abalone" />
+            <Image className="gs-avator ml-3" source={category.image} />
           </div>
           <div>
             <div className="gs-tag mr-1">UNITED STATES</div>
@@ -113,9 +119,11 @@ class QuoteShow extends Component {
           <div className="d-flex">
             <div>
               <div className="quote-sizes">
-                <div className="quote-sizes-title">SIZES</div>
+                <div className="quote-sizes-title">
+                  {category.attr_name}
+                </div>
                 <div className="quote-sizes-list">
-                  {sizes.map((size, i) => {
+                  {category.attr_values.map((size, i) => {
                     let sizeItemClass = classnames('size', {
                       "active": this.state.quoteSize.selected.id == size.id,
                     });

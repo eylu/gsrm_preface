@@ -2,6 +2,26 @@
   height: 200px;
 }
 
+.category-list{
+  .category{
+    float: left;
+    display: inline;
+    width: 30%;
+    margin-right: 2%;
+    margin-bottom: 24px;
+    border: 1px solid map-get($colors, "info");
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+    background: #fff;
+    padding: 20px;
+
+    &-name{
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+
 .quote-page{}
 .quote-header{
   padding-top: 24px;
@@ -27,6 +47,7 @@
   & &-title{
     font-size: 16px;
     font-weight: 700;
+    text-transform: uppercase;
     text-align: center;
     padding: 25px 0;
     border-bottom: 1px solid map-get($colors, "info-light");

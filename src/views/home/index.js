@@ -8,10 +8,8 @@ import { firebaseConnect } from "react-redux-firebase";
 import _ from "lodash";
 import { Button } from "reactstrap";
 
-import { quoteType } from "../../config/enum";
-import QuoteShow from "../quotes/show";
+import { categories } from "../../config/enum";
 
-const quoteTypeArray = _.map(quoteType, (key, value) => { return value });
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -21,17 +19,34 @@ class Home extends Component {
     // console.log(this.props)
   }
 
+  renderCategory(category, index) {
+    return(
+      <div key={index} className="category">
+        <Link to={`/quotes/${category.id}`}>
+          <h2 className="category-name">{category.name}</h2>
+        </Link>
+      </div>
+    );
+  }
+
+  renderCategoryList() {
+    return (
+      <div className="category-list clearfix">
+        {categories.map((category, i) => {
+          return this.renderCategory(category, i);
+        })}
+      </div>
+    );
+  }
+
 
 
   render() {
-    let quotes = this.props.quotes || {};
+
 
     return (
-      <div>
-        <div className="d-none">
-          Home Page.
-        </div>
-        <QuoteShow />
+      <div className="gs-page">
+        {this.renderCategoryList()}
       </div>
     );
   }

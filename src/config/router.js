@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "../views/layout";
 import Home from "../views/home";
 import Dashboard from "../views/home/dashboard";
+import QuoteShow from "../views/quotes/show";
 
 export default class AppRouter extends Component {
   constructor(props){
@@ -17,6 +18,7 @@ export default class AppRouter extends Component {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/quotes/:id" component={QuoteShow} />
         </Switch>
       </Layout>
     );
