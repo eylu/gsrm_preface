@@ -152,7 +152,7 @@ class QuoteShow extends Component {
                       <div className="d-flex align-items-center">
                         <div className="flex1">
                           <div className="tip">HIGHEST OFFER PRICE</div>
-                          <div className="price">${this.state.quoteSize.selected.max_price.toFixed(2)}</div>
+                          <div className="price">${Number(this.state.quoteSize.selected.max_price).toFixed(2)}</div>
                         </div>
                         <Button onClick={() => this.toggleOrderModal('buy')}>
                           SELL
@@ -178,7 +178,7 @@ class QuoteShow extends Component {
                       <div className="d-flex align-items-center">
                         <div className="flex1">
                           <div className="tip">LOWEST ASKING PRICE</div>
-                          <div className="price">${this.state.quoteSize.selected.min_price.toFixed(2)}</div>
+                          <div className="price">${Number(this.state.quoteSize.selected.min_price).toFixed(2)}</div>
                         </div>
                         <Button onClick={() => this.toggleOrderModal('sell')}>
                           BUY

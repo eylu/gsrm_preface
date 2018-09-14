@@ -12,6 +12,7 @@ import {
 import find from "lodash/find";
 import get from "lodash/get";
 import result from "lodash/result";
+import findIndex from "lodash/findIndex";
 
 class ModalOrderCreate extends Component {
   constructor(props) {
@@ -21,10 +22,9 @@ class ModalOrderCreate extends Component {
       dropdownOpen: false
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     console.log(this.getSize());
     const size_id = get(this.getSize()[0], "id");
-    console.log(size_id)
     if (!size_id) {
       return;
     }
@@ -121,6 +121,19 @@ class ModalOrderCreate extends Component {
     this.setState({ form });
   };
 
+  isSelected = size_id => {
+    const { form } = this.state;
+    const index = findIndex(form, item => item.size_id === size_id);
+    return index >= 0;
+  };
+
+  renderIcon = size_id => {
+    if (this.isSelected(size_id)) {
+      return <span className="tag bg-gray">-</span>;
+    }
+    return <span className="tag bg-success">√</span>;
+  };
+
   renderDropDownItem = ({ id, value }, index) => (
     <DropdownItem
       key={index}
@@ -128,8 +141,11 @@ class ModalOrderCreate extends Component {
       onClick={e => {
         this.addRow({ size_id: Number(e.target.value) });
       }}
+      disabled={this.isSelected(id)}
+      className="d-flex justify-content-center align-items-center"
     >
       {value}
+      {this.renderIcon(id)}
     </DropdownItem>
   );
 
@@ -142,7 +158,9 @@ class ModalOrderCreate extends Component {
       <DropdownToggle className="footer-btn drop-down">
         ADD A GRADE
       </DropdownToggle>
-      <DropdownMenu>{this.getSize().map(this.renderDropDownItem)}</DropdownMenu>
+      <DropdownMenu className="dropdown-menu">
+        {this.getSize().map(this.renderDropDownItem)}
+      </DropdownMenu>
     </Dropdown>
   );
 

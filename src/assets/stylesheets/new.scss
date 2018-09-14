@@ -25,6 +25,38 @@
       padding-top: 14px;
       padding-bottom: 14px;
     }
+    .dropdown-menu {
+      width: 100%;
+      background: #303E4E;
+      .dropdown-item {
+        color: #fff;
+        text-align: center;
+        font-size: 18px;
+        line-height: 48px;
+        font-weight: bold;
+        &:hover {
+          color:#303E4E;
+        }
+        &:disabled {
+          color: #6D7782;
+        }
+        .tag {
+          width: 28px;
+          height: 28px;
+          line-height: 28px;
+          border-radius: 100%;
+          color:#fff;
+          display: block;
+          margin-left: 22px;
+          &.bg-gray {
+            background: #C4C4C4;
+          }
+          &.bg-success {
+            background: #44D8A3;
+          }
+        }
+      }
+    }
     .input-title {
       font-size: 12px;
       margin-bottom: 10px;
